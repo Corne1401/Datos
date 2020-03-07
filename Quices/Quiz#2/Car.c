@@ -1,41 +1,52 @@
 #include<stdio.h>
 
-struct Car
-    {
-        /* data */
-        float weight;
-        int wheels;
-        int seats;
-        char brand[16];
-        char color[16];
+void printData(float weight, int wheels, int seats, short axis, short cilinder){
 
-        
+    printf("weight: %f\n", weight);
 
-    };
+    printf("wheels: %d\n", wheels);
 
-void printData(struct Car *car){
+    printf("seats: %d\n", seats);
 
-    printf("weight: %f\n", car->weight);
-    printf("wheels: %d\n", car->wheels);
-    printf("seats: %d\n", car->seats);
-    printf("brand: ");
-    for (int i = 0; i < 16; i++){
-        printf("%c",car->brand[i]);
-    };
+    printf("axis: ");
+    printf("%d", axis);
     printf("\n");
-    printf("color: ");
-    for (int i = 0; i < 16; i++){
-        printf("%c",car->color[i]);
-    };
+
+    printf("cilinder: ");
+    printf("%d", cilinder);
     printf("\n");
 
 };
 
 int main (){
-    
-    struct Car car1 = {1000.532, 4, 5, "toyota", "white"};
 
-    printData(&car1);
-    fflush(stdout);
+    float weight;
+    int wheels;
+    int seats;
+    short axis;
+    short cilinders;
+
+    printf("weight\n");
+    scanf("%f", &weight);
+
+    printf("wheels\n");
+    scanf("%d", &wheels);
+
+    printf("seats\n");
+    scanf("%d", &seats);
+
+    
+    printf("axis\n");
+    scanf("%hd", &axis);
+    
+
+    printf("cilinders\n");
+    scanf("%hd", &cilinders);
+ 
+
+
+    
+
+    printData(weight,wheels,seats,axis,cilinders);
 
 }
