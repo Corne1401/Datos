@@ -128,7 +128,7 @@ void EliminarElemento(){
 
         }
 
-        else if (registro == ultimo->id && aux1->siguiente == ultimo){
+        else if (registro == ultimo->id){
             free(ultimo);
             aux1->siguiente = NULL;
             ultimo = aux1;

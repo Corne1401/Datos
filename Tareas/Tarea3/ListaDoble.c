@@ -10,6 +10,7 @@ typedef struct _agenda {
     char nombre[20];
     char telefono[12];
     struct _agenda *siguiente;
+    struct _agenda *anterior;
 
 }_agenda; //definicion del tipo de dato _agenda
 
@@ -24,7 +25,8 @@ void mostrar_menu() {
     printf("3.- Consultar Registro\n");
     printf("4.- Consultar Nombre\n");
     printf("5.- Eliminar Registro\n");
-    printf("6.- Salir\n\n");
+    printf("6.- Navegar\n");
+    printf("7.- Salir\n\n");
     printf("Escoge una opción: ");
 
     fflush(stdout);
@@ -78,20 +80,24 @@ void anadir_elemento() {
     también vale ultimo==NULL */
     if (primero==NULL) {
 
-    printf( "Primer elemento\n");
-    nuevo->id = 0;
-    primero = nuevo;
-    ultimo = nuevo;
+        printf( "Primer elemento\n");
+        nuevo->id = 0;
+        nuevo->anterior = NULL;
+
+        primero = nuevo;
+        ultimo = nuevo;
 
     }
     else {
 
-    /* el hasta ahora último apuntará al nuevo */
-    nuevo->id = ultimo->id+1;
-    ultimo->siguiente = nuevo;
+        /* el hasta ahora último apuntará al nuevo */
+        nuevo->id = ultimo->id+1;
 
-    /* hacemos que el nuevo sea ahora el último */
-    ultimo = nuevo;
+        ultimo->siguiente = nuevo;
+        nuevo->anterior = ultimo;
+
+        /* hacemos que el nuevo sea ahora el último */
+        ultimo = nuevo;
 
     }
 
@@ -134,16 +140,18 @@ void EliminarElemento(){
             ultimo = aux1;
             break;
         }
-        else if(aux1->siguiente->id == registro){
-            _agenda *borrar = aux1->siguiente;
-            aux1->siguiente = borrar->siguiente;
-            free(borrar);
+        else if(aux1->id == registro){
+
+            aux1->anterior->siguiente = aux1->siguiente;
+            aux1->siguiente->anterior = aux1->anterior;
+            free(aux1);
             organizarRegistros();
             break;
         }
         else if(registro == primero->id){
             _agenda *borrar = primero;
             primero = aux1->siguiente;
+            primero->anterior = NULL;
             free(borrar);
             organizarRegistros();
             break;
@@ -167,7 +175,7 @@ void mostrar_lista() {
     while (auxiliar!=NULL) {
         printf("------------------------\n");
         printf( "Nombre: %s\nTelefono: %s\nAltura: %f\nDireccion: %s\nID: %d\n",
-        auxiliar->nombre, auxiliar->telefono, auxiliar->height, auxiliar->dir, auxiliar->id);
+                auxiliar->nombre, auxiliar->telefono, auxiliar->height, auxiliar->dir, auxiliar->id);
         printf("------------------------\n");
         auxiliar = auxiliar->siguiente;
 
@@ -233,6 +241,50 @@ void ConsultarNombre(){
     }
 }
 
+
+void Navegar(){
+
+    _agenda *aux = primero;
+
+    while (1){
+
+        printf("----------------\n");
+        printf( "Nombre: %s\nTelefono: %s\nAltura: %f\nDireccion: %s\nID: %d\n",
+                aux->nombre, aux->telefono, aux->height, aux->dir, aux->id);
+        printf("----------------\n");
+        printf("Presione 'n' para ir al siguiente, 'b' para ir al atenrior o 'e' para salir");
+
+
+        char dir;
+        scanf("%c", &dir);
+        while((getchar()) != '\n');
+
+        if (dir == 'n'){
+            if( aux->siguiente == NULL){
+                printf("No hay mas elementos hacia adelante\n");
+            }
+            else{
+                aux = aux->siguiente;
+            }
+
+        }
+        else if( dir == 'b'){
+            if(aux->anterior == NULL){
+                printf("No hay mas elementos hacia atras\n");
+            }
+            else{
+                aux = aux->anterior;
+            }
+        }
+        else if( dir == 'e'){
+            break;
+        }
+    }
+
+
+}
+
+
 int main() {
 
     char opcion;
@@ -264,13 +316,16 @@ int main() {
                 EliminarElemento(); break;
 
             case '6':
+                Navegar(); break;
+
+            case '7':
                 exit( 1);
 
             default:
 
-            printf( "Opción no válida\n" );
+                printf( "Opción no válida\n" );
 
-            break;
+                break;
 
         }
 

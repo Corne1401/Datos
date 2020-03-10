@@ -6,11 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/daniel/github/Datos/Pruebas/Tarea3/main.c
+/home/daniel/github/Datos/Pruebas/ListaDoble/main.c
 stdio.h
 -
 stdlib.h
 -
 string.h
+-
+printf.h
 -
 
