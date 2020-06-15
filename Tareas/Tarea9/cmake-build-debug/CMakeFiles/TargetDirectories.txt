@@ -1,0 +1,3 @@
+/home/daniel/github/Datos/Tareas/Tarea9/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/daniel/github/Datos/Tareas/Tarea9/cmake-build-debug/CMakeFiles/Tarea9.dir
+/home/daniel/github/Datos/Tareas/Tarea9/cmake-build-debug/CMakeFiles/edit_cache.dir

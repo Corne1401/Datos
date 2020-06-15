@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/daniel/github/Datos/Tareas/Tarea9/Encoder-Decoder/EncoderDecoder.h
+iostream
+-
+unordered_map
+-
+
+/home/daniel/github/Datos/Tareas/Tarea9/Menu/Menu.h
+iostream
+-
+cctype
+-
+../UserInput/UserInput.h
+/home/daniel/github/Datos/Tareas/Tarea9/UserInput/UserInput.h
+
+/home/daniel/github/Datos/Tareas/Tarea9/UserInput/UserInput.h
+iostream
+-
+fstream
+-
+../Encoder-Decoder/EncoderDecoder.h
+/home/daniel/github/Datos/Tareas/Tarea9/Encoder-Decoder/EncoderDecoder.h
+
+/home/daniel/github/Datos/Tareas/Tarea9/main.cpp
+iostream
+-
+Menu/Menu.h
+/home/daniel/github/Datos/Tareas/Tarea9/Menu/Menu.h
+
